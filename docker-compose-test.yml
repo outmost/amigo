@@ -9,18 +9,18 @@ services:
       DATABASE_URL: postgres://postgres:password@db:5432/amigo
       DATABASE_TEST_URL: postgres://postgres:password@testdb:5432/amigo_test
     links:
-      - db
+      - testdb
     depends_on:
-      db:
+      testdb:
         condition: service_healthy
-  db:
+  testdb:
     image: postgres
-    container_name: db
+    container_name: testdb
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=amigo
+      - POSTGRES_DB=amigo_test
     healthcheck:
       test: exit 0
