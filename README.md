@@ -29,8 +29,15 @@ docker-compose run --rm web knex seed:run --env development --knexfile knexfile.
 
 ## Test
 
+Run tests using -f to force docker-compose to use the docker-compose-test.yml configuration
 ```
 docker-compose -f docker-compose-test.yml run --rm web npm test
+```
+
+Stop and remove testdb container
+```
+docker-compose -f docker-compose-test.yml stop testdb 
+docker-compose -f docker-compose-test.yml rm -f testdb 
 
 ```
 

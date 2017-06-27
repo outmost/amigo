@@ -17,12 +17,8 @@ chai.use(chaiHttp)
 describe('GET Messages API', () => {
   beforeEach(() => {
     return knex.migrate.rollback()
-    .then(() => {
-      return knex.migrate.latest()
-    })
-    .then(() => {
-      return knex.seed.run()
-    })
+    .then(() => { return knex.migrate.latest() })
+    .then(() => { return knex.seed.run() })
   })
 
   afterEach(() => {
@@ -95,7 +91,6 @@ describe('GET Messages API', () => {
           .post('/messages/')
           .send('this is a message')
           .end((err, res) => {
-            console.log(err)
             should.not.exist(err)
             res.should.have.status(200)
             res.should.be.a('object')
