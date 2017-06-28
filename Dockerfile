@@ -4,6 +4,7 @@ RUN mkdir /app
 WORKDIR /app
 ENV PATH ./node_modules/.bin:$PATH
 COPY package.json /app
+RUN npm install -g nsp
 RUN npm install
 COPY ./src /app
 EXPOSE 3000

@@ -28,6 +28,11 @@ router.post('/messages/', (req, res) => {
 })
 
 // GET all messages
+router.get('/', (req, res) => {
+  res.status(404).send('Nothing to see here')
+})
+
+// GET all messages
 router.get('/messages', (req, res) => {
   queries.getAll()
       .then((data) => {

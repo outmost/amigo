@@ -2,8 +2,26 @@
 
 const express = require('express')
 const app = express()
+const helmet = require('helmet')
+const RateLimit = require('express-rate-limit')
 const routes = require('./routes')
 
+// Security
+app.use(helmet())
+app.disable('x-powered-by')
+
+// Rate limiting
+// app.enable('trust proxy') // only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
+
+const limiter = new RateLimit({
+  windowMs: 10 * 1000, // 10 second minutes
+  max: 50 // limit each IP to 50 requests per windowMs
+})
+
+//  apply limiter to all requests
+app.use(limiter)
+
+// Routes
 app.use('/', routes)
 
 app.use((req, res, next) => {

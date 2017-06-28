@@ -5,12 +5,14 @@
   "main": "src/app.js",
   "scripts": {
     "start": "nodemon src/app.js",
-    "test": "standard && ./node_modules/mocha/bin/_mocha test/app.js"
+    "test": "standard && nsp check && ./node_modules/mocha/bin/_mocha test/app.js"
   },
   "author": "tomsutton1984@gmail.com",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
+    "express-rate-limit": "^2.8.0",
+    "helmet": "^3.6.1",
     "knex": "^0.13.0",
     "nodemon": "^1.11.0",
     "pg": "^6.4.0"
